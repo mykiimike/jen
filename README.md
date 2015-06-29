@@ -1,5 +1,9 @@
 # Jen is a portable and safe Javascript password/number generator
 
+
+[![Build Status](https://travis-ci.org/mykiimike/jen.svg)](https://travis-ci.org/mykiimike/jen)
+
+
 The goal of Jen is to generate a password securely using cryptographic approach.
 Jen supports 4 engines to generate random bytes :
 * NodeJS Crypto API

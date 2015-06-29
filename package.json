@@ -1,13 +1,13 @@
 {
   "name": "node-jen",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Jen is a portable and safe Javascript password/number generator",
   "license": "GPLv3",
   "keywords": [
     "password",
     "random",
     "number",
-    "portable"
+    "portable",
     "generator"
   ],
   "repository": {
@@ -19,5 +19,5 @@
     "email": "mv@verman.fr",
     "url": "https://github.com/mykiimike/jen/issues"
   },
-  "author": "Michael Vergoz <mv@verman.fr>",
+  "author": "Michael Vergoz <mv@verman.fr>"
 }

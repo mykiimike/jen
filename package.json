@@ -19,5 +19,7 @@
     "email": "mv@verman.fr",
     "url": "https://github.com/mykiimike/jen/issues"
   },
-  "author": "Michael Vergoz <mv@verman.fr>"
+  "author": "Michael Vergoz <mv@verman.fr>",
+  "main": "jen",
+  "bin": "./bin/jen",
 }

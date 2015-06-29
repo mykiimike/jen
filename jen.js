@@ -46,6 +46,7 @@ function Jen(hardened) {
 	this.hardened = hardened && hardened == true ? hardened : false;
 	this.dump = new Uint8Array(256);
 	this.mode = '';
+	this.version = '1.0.1';
 	if(_serverSide == true) {
 		this.crypto = require("crypto");
 		this.mode = "NodeJS CryptoAPI";
@@ -102,7 +103,7 @@ Jen.prototype.random = function(size) {
 };
 
 Jen.prototype.hardening = function(bool) {
-	this.hardened = bool && bool == true ? bool : true;
+	this.hardened = !!bool;
 };
 
 Jen.prototype.password = function(min, max, regex) {

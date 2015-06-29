@@ -1,5 +1,5 @@
 /*
- * Jen is a portable password generator using cryptographically approach
+ * Jen is a portable password generator using cryptographic approach
  * Copyright (C) 2015  Michael VERGOZ @mykiimike
  * 
  * This program is free software: you can redistribute it and/or modify

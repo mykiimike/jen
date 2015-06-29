@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+
+<script type="text/javascript" src="../jen.js"></script>
+
+<body>
+
+</body>
+<div id="rendering">
+</div>
+
+<script>
+(function() {
+	var div = document.getElementById("rendering");
+	function write(d) {
+		console.log(d);
+		div.innerHTML = div.innerHTML+"<br/>"+d;
+		
+	}
+	
+	var hdl = new Jen(false);
+	write("Engine: "+hdl.engine());
+	for(var a=0; a<10; a++)
+		write(hdl.password(10, 30));
+
+	for(var a=0; a<10; a++)
+		write(hdl.password(5));
+
+	for(var a=0; a<10; a++)
+		write(hdl.password(10, 30, true));
+
+	for(var a=0; a<10; a++)
+		write(hdl.password(10, 10, true));
+
+})();
+</script>
+<html>

@@ -1,5 +1,5 @@
 /*
- * Jen is a portable password generator using cryptographically approach
+ * Jen is a portable password generator using cryptographic approach
  * Copyright (C) 2015  Michael VERGOZ @mykiimike
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ var _serverSide = false;
 
 function JenFailsafe() { }
 
-/* not a cryptographically approach */
+/* not a cryptographic approach */
 JenFailsafe.getRandomValues = function(buffer) {
 	if (!(buffer instanceof Uint8Array))
 		buffer = new Uint8Array(256);
@@ -64,7 +64,6 @@ function Jen(hardened) {
 			this.mode = "Failsafe";
 			this.crypto = JenFailsafe;
 		}
-		
 	}
 }
 
@@ -77,6 +76,29 @@ Jen.prototype.fill = function() {
 		this.dump = this.crypto.randomBytes(256);
 	else
 		this.crypto.getRandomValues(this.dump);
+};
+
+Jen.prototype.randomBytes = function(size) {
+	if(size <= 0)
+		size = 1;
+	
+	if(_serverSide == true)
+		return(this.crypto.randomBytes(size));
+	
+	var r = new Uint8Array(size);
+	this.crypto.getRandomValues(r);
+	return(r);
+};
+
+Jen.prototype.random = function(size) {
+	if(_serverSide == true)
+		return(this.randomBytes(size).toString("hex"));
+	
+	var d = this.randomBytes(size), r = '';
+	for(var a=0; a<d.length; a++)
+		r += parseInt(d[a]);
+	
+	return(r);
 };
 
 Jen.prototype.password = function(min, max, hardened) {
@@ -122,6 +144,7 @@ Jen.prototype.password = function(min, max, hardened) {
 			}
 		}
 	}
+	this.fill();
 	return(ret);
 
 };

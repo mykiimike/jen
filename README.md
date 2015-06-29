@@ -1,4 +1,4 @@
-# Jen is a portable and safe Javascript password generator
+# Jen is a portable and safe Javascript password/number generator
 
 The goal of Jen is to generate password securely using cryptographic approach.
 Jen supports 4 engines to generate random bytes :
@@ -56,6 +56,26 @@ for(var a=0; a<10; a++)
 
 for(var a=0; a<10; a++)
 	console.log(hdl.password(10, 10, true));
+```
+
+## Jen.random(size)
+Generate random numbers (integers) into a String.
+
+* size: Size of bytes read from randomBytes
+
+```js
+for(var a=0; a<10; a++)
+	console.log(hdl.random(4));
+```
+
+## Jen.randomBytes(size)
+Generate random bytes into an Uint8Array.
+
+* size: Size of bytes read from randomBytes
+
+```js
+for(var a=0; a<10; a++)
+	console.log(hdl.randomBytes(4));
 ```
 
 ### Jen.engine() 

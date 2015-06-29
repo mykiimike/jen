@@ -36,5 +36,9 @@ for(var a=0; a<10; a++)
 for(var a=0; a<10; a++)
 	console.log(hdl.password(10, 10, true));
 
+for(var a=0; a<10; a++)
+	console.log(hdl.randomBytes(4));
 
+for(var a=0; a<10; a++)
+	console.log(hdl.random(4));
 

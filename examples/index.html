@@ -16,7 +16,6 @@
 	function write(d) {
 		console.log(d);
 		div.innerHTML = div.innerHTML+"<br/>"+d;
-		
 	}
 	
 	var hdl = new Jen(false);
@@ -32,6 +31,12 @@
 
 	for(var a=0; a<10; a++)
 		write(hdl.password(10, 10, true));
+	
+	for(var a=0; a<10; a++)
+		write(hdl.randomBytes(4));
+
+	for(var a=0; a<10; a++)
+		write(hdl.random(4));
 
 })();
 </script>

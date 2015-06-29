@@ -35,27 +35,37 @@ var hdl = new Jen(true);
 ```
 * hardened: Use hardened version includes specials chars into password generator: (default true)
 
-## Jen.password(min, max, hardened)
+## Jen.password(min, max, regex)
 ## Jen.password(min, max)
 ## Jen.password(min)
 This function returns a random String.
 
 * min: Minimum String length (must be upper to 4)
 * max: Maximum String length
-* hardened: boolean to activate hardened password generator (default true)  
+* regex: Regular expression to filter selected chars
 
 ```js
+console.log("10 Passwords from 10 to 30 w/o hardening");
 for(var a=0; a<10; a++)
 	console.log(hdl.password(10, 30));
 
+console.log("10 Passwords fixed 5 w/o hardening");
 for(var a=0; a<10; a++)
 	console.log(hdl.password(5));
 
+console.log("10 Passwords from 10 to 30 w/ hardening");
+hdl.hardening(true);
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 30, true));
+	console.log(hdl.password(10, 30));
 
+console.log("10 Passwords fixed 10 w/ hardening");
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 10, true));
+	console.log(hdl.password(10, 10));
+
+console.log("10 Passwords fixed 10 w/o hardening with regex [A-F0-9]");
+hdl.hardening(false);
+for(var a=0; a<10; a++)
+	console.log(hdl.password(10, 10, /[A-F0-9]/));
 ```
 
 ## Jen.random(size)
@@ -64,6 +74,7 @@ Generate random numbers (integers) into a String.
 * size: Size of bytes read from randomBytes
 
 ```js
+console.log("10 Random string (based on 4 bytes)");
 for(var a=0; a<10; a++)
 	console.log(hdl.random(4));
 ```
@@ -74,10 +85,16 @@ Generate random bytes into an Uint8Array.
 * size: Size of bytes read from randomBytes
 
 ```js
+console.log("10 Random 4 bytes");
 for(var a=0; a<10; a++)
 	console.log(hdl.randomBytes(4));
 ```
 
+### Jen.hardening(bool)
+Set on/off hardening string generator
+ 
+* bool: boolean to activate hardened password generator (default true)
+  
 ### Jen.engine() 
 Returns the current engine in a String
 ```js

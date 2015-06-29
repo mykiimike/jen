@@ -101,9 +101,14 @@ Jen.prototype.random = function(size) {
 	return(r);
 };
 
-Jen.prototype.password = function(min, max, hardened) {
-	this.hardened = hardened && hardened == true ? hardened : false;
-	
+Jen.prototype.hardening = function(bool) {
+	this.hardened = bool && bool == true ? bool : true;
+};
+
+Jen.prototype.password = function(min, max, regex) {
+	if(!(regex instanceof RegExp))
+		regex = null;
+
 	min = min < 4 ? 4 : min;
 	max = max > min ? max : min;
 
@@ -129,8 +134,16 @@ Jen.prototype.password = function(min, max, hardened) {
 				(array[a] >= 0x30 && array[a] <= 0x39) ||
 				(array[a] >= 0x41 && array[a] <= 0x5a) ||
 				(array[a] >= 0x61 && array[a] <= 0x7a)) {
-				ret += String.fromCharCode(array[a]);
-				b++;
+				if(regex) {
+					if(regex.test(String.fromCharCode(array[a]))) {
+						ret += String.fromCharCode(array[a]);
+						b++;
+					}
+				}
+				else {
+					ret += String.fromCharCode(array[a]);
+					b++;
+				}
 			}
 			else if(this.hardened == true && (
 					array[a] == 0x21 ||
@@ -139,8 +152,16 @@ Jen.prototype.password = function(min, max, hardened) {
 					(array[a] == 0x28 && array[a] <= 0x2f) ||
 					(array[a] == 0x3a && array[a] <= 0x40)
 				)) {
-				ret += String.fromCharCode(array[a]);
-				b++;
+				if(regex) {
+					if(regex.test(String.fromCharCode(array[a]))) {
+						ret += String.fromCharCode(array[a]);
+						b++;
+					}
+				}
+				else {
+					ret += String.fromCharCode(array[a]);
+					b++;
+				}
 			}
 		}
 	}

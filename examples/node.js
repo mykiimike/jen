@@ -24,21 +24,33 @@ var Jen = require(__dirname+"/../jen.js");
 var hdl = new Jen(false);
 
 console.log("Engine: "+hdl.engine());
+
+console.log("10 Passwords from 10 to 30 w/o hardening");
 for(var a=0; a<10; a++)
 	console.log(hdl.password(10, 30));
 
+console.log("10 Passwords fixed 5 w/o hardening");
 for(var a=0; a<10; a++)
 	console.log(hdl.password(5));
 
+console.log("10 Passwords from 10 to 30 w/ hardening");
+hdl.hardening(true);
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 30, true));
+	console.log(hdl.password(10, 30));
 
+console.log("10 Passwords fixed 10 w/ hardening");
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 10, true));
+	console.log(hdl.password(10, 10));
 
+console.log("10 Passwords fixed 10 w/o hardening with regex [A-F0-9]");
+hdl.hardening(false);
+for(var a=0; a<10; a++)
+	console.log(hdl.password(10, 10, /[A-F0-9]/));
+
+console.log("10 Random 4 bytes");
 for(var a=0; a<10; a++)
 	console.log(hdl.randomBytes(4));
 
+console.log("10 Random string (based on 4 bytes)");
 for(var a=0; a<10; a++)
 	console.log(hdl.random(4));
-

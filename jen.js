@@ -32,7 +32,7 @@ JenFailsafe.getRandomValues = function(buffer) {
 	for(var a=0; a<buffer.length; a++) {
 		while(1) {
 			rd = Math.round(Math.random()*256);
-			if(rd >= 0 && rd <= 256)
+			if(rd >= 0 && rd <= 255)
 				break;
 		}
 		buffer[a] = rd;

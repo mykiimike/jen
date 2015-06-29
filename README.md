@@ -1,13 +1,13 @@
 # Jen is a portable and safe Javascript password/number generator
 
-The goal of Jen is to generate password securely using cryptographic approach.
+The goal of Jen is to generate a password securely using cryptographic approach.
 Jen supports 4 engines to generate random bytes :
 * NodeJS Crypto API
 * W3C Crypto API http://www.w3.org/TR/WebCryptoAPI/
 * Microsoft Crypto API https://msdn.microsoft.com/en-us/library/windows/desktop/aa380256(v=vs.85).aspx
 * Failsafe
 
-Failsafe uses Math.random() which is bad because the random number generator doesn't use a 
+Failsafe uses Math.random() which is not safe because the random number generator doesn't use a 
 cryptographic approach.
 
 ## Hardened passwords

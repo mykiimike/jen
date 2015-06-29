@@ -44,6 +44,20 @@ This function returns a random String.
 * max: Maximum String length
 * hardened: boolean to activate hardened password generator (default true)  
 
+```js
+for(var a=0; a<10; a++)
+	console.log(hdl.password(10, 30));
+
+for(var a=0; a<10; a++)
+	console.log(hdl.password(5));
+
+for(var a=0; a<10; a++)
+	console.log(hdl.password(10, 30, true));
+
+for(var a=0; a<10; a++)
+	console.log(hdl.password(10, 10, true));
+```
+
 ### Jen.engine() 
 Returns the current engine in a String
 ```js

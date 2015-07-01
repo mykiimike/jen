@@ -46,7 +46,7 @@ function Jen(hardened) {
 	this.hardened = hardened && hardened == true ? hardened : false;
 	this.dump = new Uint8Array(256);
 	this.mode = '';
-	this.version = '1.0.1';
+	this.version = '1.0.2';
 	if(_serverSide == true) {
 		this.crypto = require("crypto");
 		this.mode = "NodeJS CryptoAPI";

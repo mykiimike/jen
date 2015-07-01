@@ -107,6 +107,7 @@ Jen.prototype.hardening = function(bool) {
 };
 
 Jen.prototype.password = function(min, max, regex) {
+	this._timeStart = new Date().getTime();
 	if(!(regex instanceof RegExp))
 		regex = null;
 
@@ -167,8 +168,13 @@ Jen.prototype.password = function(min, max, regex) {
 		}
 	}
 	this.fill();
+	this._timeEnd = new Date().getTime();
 	return(ret);
 
+};
+
+Jen.prototype.stats = function(min, max, regex) {
+	return(this._timeEnd-this._timeStart);
 };
 
 if(typeof module !== 'undefined' && module.exports) {

@@ -13,12 +13,13 @@
 <script>
 (function() {
 	var div = document.getElementById("rendering");
+	var hdl = new Jen(false);
+	
 	function write(d) {
-		console.log(d);
-		div.innerHTML = div.innerHTML+"<br/>"+d;
+		console.log(d, hdl.stats());
+		div.innerHTML = div.innerHTML+" - "+hdl.stats()+"ms<br/>"+d;
 	}
 	
-	var hdl = new Jen(false);
 	write("Engine: "+hdl.engine());
 	
 	write("10 Passwords from 10 to 30 w/o hardening");
@@ -43,6 +44,10 @@
 	for(var a=0; a<10; a++)
 		write(hdl.password(10, 10, /[A-F0-9]/));
 
+	write("One big long password");
+	hdl.hardening(true);
+	write(hdl.password(128));
+	
 	write("10 Random 4 bytes");
 	for(var a=0; a<10; a++)
 		write(hdl.randomBytes(4));

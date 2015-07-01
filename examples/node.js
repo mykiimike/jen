@@ -23,34 +23,42 @@ var Jen = require(__dirname+"/../jen.js");
 
 var hdl = new Jen(false);
 
-console.log("Engine: "+hdl.engine());
+function write(d) {
+	console.log(d, hdl.stats());
+}
 
-console.log("10 Passwords from 10 to 30 w/o hardening");
+write("Engine: "+hdl.engine());
+
+write("10 Passwords from 10 to 30 w/o hardening");
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 30));
+	write(hdl.password(10, 30));
 
-console.log("10 Passwords fixed 5 w/o hardening");
+write("10 Passwords fixed 5 w/o hardening");
 for(var a=0; a<10; a++)
-	console.log(hdl.password(5));
+	write(hdl.password(5));
 
-console.log("10 Passwords from 10 to 30 w/ hardening");
+write("10 Passwords from 10 to 30 w/ hardening");
 hdl.hardening(true);
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 30));
+	write(hdl.password(10, 30));
 
-console.log("10 Passwords fixed 10 w/ hardening");
+write("10 Passwords fixed 10 w/ hardening");
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 10));
+	write(hdl.password(10, 10));
 
-console.log("10 Passwords fixed 10 w/o hardening with regex [A-F0-9]");
+write("10 Passwords fixed 10 w/o hardening with regex [A-F0-9]");
 hdl.hardening(false);
 for(var a=0; a<10; a++)
-	console.log(hdl.password(10, 10, /[A-F0-9]/));
+	write(hdl.password(10, 10, /[A-F0-9]/));
 
-console.log("10 Random 4 bytes");
-for(var a=0; a<10; a++)
-	console.log(hdl.randomBytes(4));
+write("One big long password");
+hdl.hardening(true);
+write(hdl.password(128));
 
-console.log("10 Random string (based on 4 bytes)");
+write("10 Random 4 bytes");
 for(var a=0; a<10; a++)
-	console.log(hdl.random(4));
+	write(hdl.randomBytes(4));
+
+write("10 Random string (based on 4 bytes)");
+for(var a=0; a<10; a++)
+	write(hdl.random(4));

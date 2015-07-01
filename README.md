@@ -105,6 +105,12 @@ Returns the current engine in a String
 console.log("Engine: "+hdl.engine());
 ```
 
+### Jen.stats() 
+Get password generation statistics 
+```js
+console.log("Last pass stats: "+hdl.stats());
+```
+
 ### Jen.fill()
 This function fill the random buffer line. You don't need to use it.
   

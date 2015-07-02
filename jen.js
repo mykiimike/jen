@@ -92,12 +92,29 @@ Jen.prototype.randomBytes = function(size) {
 };
 
 Jen.prototype.random = function(size) {
-	if(_serverSide == true)
-		return(this.randomBytes(size).toString("hex"));
+	if(size <= 0)
+		size = 4;
+	else if(size > 2)
+		size = 4;
 	
-	var d = this.randomBytes(size), r = '';
-	for(var a=0; a<d.length; a++)
-		r += parseInt(d[a]);
+	var d = this.randomBytes(size);
+	
+	if(_serverSide == true) {
+		if(size == 1)
+			return(d.readUInt8(0));
+		else if(size == 2)
+			return(d.readUInt16LE(0));
+		else
+			return(d.readUInt32LE(0));
+	}
+
+	var dv = new DataView(d.buffer), r;
+	if(size == 1)
+		r = dv.getUint8(0);
+	else if(size == 2)
+		r = dv.getUint16(0);
+	else
+		r = dv.getUint32(0);
 	
 	return(r);
 };
@@ -107,7 +124,7 @@ Jen.prototype.hardening = function(bool) {
 };
 
 Jen.prototype.password = function(min, max, regex) {
-	this._timeStart = new Date().getTime();
+	var start = new Date().getTime();
 	if(!(regex instanceof RegExp))
 		regex = null;
 
@@ -115,13 +132,16 @@ Jen.prototype.password = function(min, max, regex) {
 	max = max > min ? max : min;
 
 	var b = 0, ret = '';
-	var cur = 0;
-	while(cur == 0) {
-		this.fill();
-		var array = this.dump;
-		for (var a=0; a < array.length; a++) {
-			if(array[a] >= min && array[a] <= max) {
-				cur = array[a];
+	var cur = max;
+
+	if(min != max) {
+		cur = 0;
+		var nBi = Math.ceil(Math.log2(max)),
+		nBy = Math.ceil(nBi/8), nByBi = nBy*8; 
+		while(cur == 0) {
+			var r = this.random(nBy)>>(nByBi-nBi);
+			if(r >= min && r <= max) {
+				cur = r;
 				break;
 			}
 		}
@@ -129,6 +149,7 @@ Jen.prototype.password = function(min, max, regex) {
 
 	b = 0;
 	while(b < cur) {
+		
 		this.fill();
 		var array = this.dump;
 		for (var a=0; a < array.length && b < cur; a++) {
@@ -168,13 +189,13 @@ Jen.prototype.password = function(min, max, regex) {
 		}
 	}
 	this.fill();
-	this._timeEnd = new Date().getTime();
+	this._time = new Date().getTime()-start;
 	return(ret);
 
 };
 
 Jen.prototype.stats = function(min, max, regex) {
-	return(this._timeEnd-this._timeStart);
+	return(this._time);
 };
 
 if(typeof module !== 'undefined' && module.exports) {

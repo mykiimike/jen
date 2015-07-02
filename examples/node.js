@@ -53,7 +53,7 @@ for(var a=0; a<10; a++)
 
 write("One big long password");
 hdl.hardening(true);
-write(hdl.password(128));
+write(hdl.password(256, 70000));
 
 write("10 Random 4 bytes");
 for(var a=0; a<10; a++)

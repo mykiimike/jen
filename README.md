@@ -1,8 +1,10 @@
 # Jen is a portable and safe Javascript password/number generator
 
+[![Build Status](https://travis-ci.org/mykiimike/jen.svg)](https://travis-ci.org/mykiimike/jen)
+[![][gt-issues]][gt-issues]
+[![][gt-licence]][gt-licence]
 
-[![Build Status](https://travis-ci.org/mykiimike/jen.svg)](https://travis-ci.org/mykiimike/jen) - Version 1.0.4-dev
-
+[![NPM](https://nodei.co/npm/node-jen.png?downloads)](https://nodei.co/npm/node-jen/)
 
 The goal of Jen is to generate a password securely using cryptographic approach.
 Jen supports 4 engines to generate random bytes :
@@ -113,4 +115,8 @@ console.log("Last pass stats: "+hdl.stats());
 
 ### Jen.fill()
 This function fill the random buffer line. You don't need to use it.
-  
+
+
+[gt-issues]: https://img.shields.io/github/issues/mykiimike/jen.svg
+[gt-licence]: https://img.shields.io/badge/license-GPLv3-blue.svg
+

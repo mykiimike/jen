@@ -33,10 +33,13 @@
 	
 	function write(d) {
 		console.log(d, hdl.stats());
-		div.innerHTML = div.innerHTML+" - "+hdl.stats()+"ms<br/>"+d;
+		div.innerHTML = div.innerHTML+"<br/>"+d;
+	}
+	function writeT(d, l) {
+		write("<h"+l+">"+d+"</h"+l+">");
 	}
 	
-	write("Engine: "+hdl.engine());
+	writeT("Engine: "+hdl.engine(), 1);
 	
 	write("10 Passwords from 10 to 30 w/o hardening");
 	for(var a=0; a<10; a++)

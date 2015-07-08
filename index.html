@@ -65,13 +65,13 @@
 
 	writeT("One big long password", 2);
 	hdl.hardening(true);
-	write(hdl.password(256, 2048));
+	write(hdl.password(128, 512));
 	
 	writeT("10 Random 4 bytes", 2);
 	for(var a=0; a<10; a++)
 		write(hdl.randomBytes(4));
 
-	writeT("10 Random string (based on 4 bytes)", 2);
+	writeT("10 Random number (based on 4 bytes)", 2);
 	for(var a=0; a<10; a++)
 		write(hdl.random(4));
 

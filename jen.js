@@ -66,6 +66,8 @@ function Jen(hardened) {
 			this.crypto = JenFailsafe;
 		}
 	}
+	console.log(this.crypto);
+	console.log(this.crypto.getRandomValues(this.dump));
 }
 
 Jen.prototype.engine = function() {

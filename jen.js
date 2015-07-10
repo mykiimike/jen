@@ -66,8 +66,6 @@ function Jen(hardened) {
 			this.crypto = JenFailsafe;
 		}
 	}
-	console.log(this.crypto);
-	console.log(this.crypto.getRandomValues(this.dump));
 }
 
 Jen.prototype.engine = function() {
@@ -138,6 +136,7 @@ Jen.prototype.password = function(min, max, regex) {
 
 	if(min != max) {
 		cur = 0;
+		
 		var nBi = Math.ceil(Math.log(max)/Math.log(2)),
 		nBy = Math.ceil(nBi/8), nByBi = nBy*8; 
 		while(cur == 0) {
@@ -204,6 +203,3 @@ if(typeof module !== 'undefined' && module.exports) {
 	_serverSide = true;
 	module.exports = Jen;
 }
-
-
-

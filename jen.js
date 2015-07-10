@@ -138,7 +138,7 @@ Jen.prototype.password = function(min, max, regex) {
 
 	if(min != max) {
 		cur = 0;
-		var nBi = Math.ceil(Math.log(max)/Math.LN2),
+		var nBi = Math.ceil(Math.log(max)/Math.log(2)),
 		nBy = Math.ceil(nBi/8), nByBi = nBy*8; 
 		while(cur == 0) {
 			var r = this.random(nBy)>>(nByBi-nBi);

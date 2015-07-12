@@ -16,6 +16,9 @@ Jen supports 4 engines to generate random bytes :
 Failsafe uses Math.random() which is not safe because the random number generator doesn't use a 
 cryptographic approach.
 
+* You can see a demo at http://mykiimike.github.io/jen/
+* Explaination [Cross Domain Math.random() prediction](http://ifsec.blogspot.fr/2012/05/cross-domain-mathrandom-prediction.html)
+
 ## Hardened passwords
 Jen has a hardened passwords generator activated by default which adds specials chars into the password.
 For those who have SQL injection in the password field they must set to **false** the **hardened** 

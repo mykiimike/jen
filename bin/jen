@@ -26,7 +26,7 @@ var path = require("path"),
 	Jen = require(path.join(path.dirname(fs.realpathSync(__filename)), '../jen'));
 
 
-/get options */
+/* get options */
 var options = {};
 for(var a=2; a<process.argv.length; a++) {
 	var el = process.argv[a];

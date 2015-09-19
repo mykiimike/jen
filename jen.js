@@ -46,7 +46,7 @@ function Jen(hardened) {
 	this.hardened = hardened && hardened == true ? hardened : false;
 	this.dump = new Uint8Array(256);
 	this.mode = '';
-	this.version = '1.0.5-dev';
+	this.version = '1.0.5';
 	if(_serverSide == true) {
 		this.crypto = require("crypto");
 		this.mode = "NodeJS CryptoAPI";
@@ -122,10 +122,12 @@ Jen.prototype.random = function(size) {
 Jen.prototype.randomBetween = function(max, min) {
 	if(max <= 0)
 		max = Math.pow(2, 32);
+	if(!min)
+		min = 0;
 	if(min >= max)
 		return(NaN);
 	var size = 1;
-	var ml2 = Math.log2(max);
+	var ml2 = Math.log(max)/Math.log(2);
 	if(ml2 > 16)
 		size = 4;
 	else if(ml2 > 8)

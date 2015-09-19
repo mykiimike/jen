@@ -119,6 +119,24 @@ Jen.prototype.random = function(size) {
 	return(r);
 };
 
+Jen.prototype.randomBetween = function(max, min) {
+	if(max <= 0)
+		max = Math.pow(2, 32);
+	if(min >= max)
+		return(NaN);
+	var size = 1;
+	var ml2 = Math.log2(max);
+	if(ml2 > 16)
+		size = 4;
+	else if(ml2 > 8)
+		size = 2;
+	var num;
+	do {
+		num = this.random(size);
+	} while(num > max || num < min);
+	return(num);
+};
+
 Jen.prototype.hardening = function(bool) {
 	this.hardened = !!bool;
 };

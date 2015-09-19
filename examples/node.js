@@ -62,3 +62,7 @@ for(var a=0; a<10; a++)
 write("10 Random string (based on 4 bytes)");
 for(var a=0; a<10; a++)
 	write(hdl.random(4));
+
+write("10 Random number between 2000 and 3000");
+for(var a=0; a<10; a++)
+	write(hdl.randomBetween(3000, 2000));

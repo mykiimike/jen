@@ -6,7 +6,8 @@
 
 [![NPM](https://nodei.co/npm/node-jen.png?downloads)](https://nodei.co/npm/node-jen/)
 
-The goal of Jen is to generate a password securely using cryptographic approach.
+Jen allows to generate passwords, random bytes and random numbers securely using cryptographic approach.
+
 Jen supports 4 engines to generate random bytes :
 * NodeJS Crypto API
 * W3C Crypto API http://www.w3.org/TR/WebCryptoAPI/
@@ -14,7 +15,7 @@ Jen supports 4 engines to generate random bytes :
 * Failsafe
 
 Failsafe uses Math.random() which is not safe because the random number generator doesn't use a 
-cryptographic approach.
+cryptographic approach.   
 
 * You can see a demo at http://mykiimike.github.io/jen/
 * Explaination [Cross Domain Math.random() prediction](http://ifsec.blogspot.fr/2012/05/cross-domain-mathrandom-prediction.html)
@@ -97,6 +98,18 @@ Generate random bytes into an Uint8Array.
 console.log("10 Random 4 bytes");
 for(var a=0; a<10; a++)
 	console.log(hdl.randomBytes(4));
+```
+
+## Jen.randomBetween(max, min)
+Generate random number between the given **min** and **max** arguments
+
+* max: Maximum value
+* min: Minimum value
+
+```js
+console.log("10 Random number between 10 and 3000");
+for(var a=0; a<10; a++)
+	console.log(hdl.randomBetween(3000, 10));
 ```
 
 ### Jen.hardening(bool)

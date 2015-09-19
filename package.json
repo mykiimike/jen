@@ -2,7 +2,7 @@
   "name": "node-jen",
   "version": "1.0.6",
   "description": "Jen is a portable and safe Javascript password/number generator",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "keywords": [
     "password",
     "random",

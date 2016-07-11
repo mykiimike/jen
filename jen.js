@@ -148,7 +148,7 @@ Jen.prototype.password = function(min, max, regex) {
 	if(!(regex instanceof RegExp))
 		regex = null;
 
-	min = min < 4 ? 4 : min;
+	min = min < 1 ? 1 : min;
 	max = max > min ? max : min;
 
 	var b = 0, ret = '';

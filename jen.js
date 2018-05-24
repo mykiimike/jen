@@ -1,20 +1,20 @@
 /*
  * Jen is a portable password generator using cryptographic approach
  * Copyright (C) 2015  Michael VERGOZ @mykiimike
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 "use strict";
@@ -27,7 +27,7 @@ function JenFailsafe() { }
 JenFailsafe.getRandomValues = function(buffer) {
 	if (!(buffer instanceof Uint8Array))
 		buffer = new Uint8Array(256);
-	
+
 	var rd = 0;
 	for(var a=0; a<buffer.length; a++) {
 		while(1) {
@@ -40,13 +40,14 @@ JenFailsafe.getRandomValues = function(buffer) {
 	return(buffer);
 };
 
-function Jen(hardened) {
+function Jen(hardened, banFailsafe) {
 	if(!(this instanceof Jen))
 		return new Jen(hardened);
 	this.hardened = hardened && hardened == true ? hardened : false;
+	this.banFailsafe = banFailsafe && banFailsafe == true ? banFailsafe : false;
 	this.dump = new Uint8Array(256);
 	this.mode = '';
-	this.version = '1.0.6-dev';
+	this.version = '1.1.0';
 	if(_serverSide == true) {
 		this.crypto = require("crypto");
 		this.mode = "NodeJS CryptoAPI";
@@ -64,6 +65,14 @@ function Jen(hardened) {
 		if(!this.crypto) {
 			this.mode = "Failsafe";
 			this.crypto = JenFailsafe;
+
+			var msgFS = "Jen says: It\'s bad to use Failsafe cryptography";
+			if(_serverSide === false && banFailsafe === true) {
+				alert(msgFS);
+			}
+			else {
+				console.log(msgFS);
+			}
 		}
 	}
 }
@@ -82,10 +91,10 @@ Jen.prototype.fill = function() {
 Jen.prototype.randomBytes = function(size) {
 	if(size <= 0)
 		size = 1;
-	
+
 	if(_serverSide == true)
 		return(this.crypto.randomBytes(size));
-	
+
 	var r = new Uint8Array(size);
 	this.crypto.getRandomValues(r);
 	return(r);
@@ -96,9 +105,9 @@ Jen.prototype.random = function(size) {
 		size = 4;
 	else if(size > 2)
 		size = 4;
-	
+
 	var d = this.randomBytes(size);
-	
+
 	if(_serverSide == true) {
 		if(size == 1)
 			return(d.readUInt8(0));
@@ -115,7 +124,7 @@ Jen.prototype.random = function(size) {
 		r = dv.getUint16(0);
 	else
 		r = dv.getUint32(0);
-	
+
 	return(r);
 };
 
@@ -156,9 +165,9 @@ Jen.prototype.password = function(min, max, regex) {
 
 	if(min != max) {
 		cur = 0;
-		
+
 		var nBi = Math.ceil(Math.log(max)/Math.log(2)),
-		nBy = Math.ceil(nBi/8), nByBi = nBy*8; 
+		nBy = Math.ceil(nBi/8), nByBi = nBy*8;
 		while(cur == 0) {
 			var r = this.random(nBy)>>(nByBi-nBi);
 			if(r >= min && r <= max) {
@@ -170,7 +179,7 @@ Jen.prototype.password = function(min, max, regex) {
 
 	b = 0;
 	while(b < cur) {
-		
+
 		this.fill();
 		var array = this.dump;
 		for (var a=0; a < array.length && b < cur; a++) {
@@ -223,6 +232,3 @@ if(typeof module !== 'undefined' && module.exports) {
 	_serverSide = true;
 	module.exports = Jen;
 }
-
-
-

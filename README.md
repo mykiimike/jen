@@ -22,7 +22,7 @@ cryptographic approach.
 
 ## Hardened passwords
 Jen has a hardened passwords generator activated by default which adds specials chars into the password.
-For those who want to use Jen for others things they must set to **false** the **hardened** 
+For those who want to use Jen for others things they must set to **false** the **hardened**
 argument at the constructor.
 
 ## Install
@@ -37,13 +37,18 @@ npm install node-jen
 <script type="text/javascript" src="path/to/jen.js"></script>
 ```
 
-## API
+### With browserify & Webpack
 
-### Jen(hardened)
+Just include / require this repo or **jen.js** direcly into your code.
+
+## Library
+
+### Jen(hardened, banFailsafe)
 ```js
-var hdl = new Jen(true);
+var hdl = new Jen(true, true);
 ```
 * hardened: Use hardened version includes specials chars into password generator: (default true)
+* banFailsafe: Generate an alert when using Failsafe cryptography (default true)
 
 ## Jen.password(min, max, regex)
 ## Jen.password(min, max)

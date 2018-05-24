@@ -44,7 +44,8 @@ function Jen(hardened, banFailsafe) {
 	if(!(this instanceof Jen))
 		return new Jen(hardened, banFailsafe);
 	this.hardened = hardened && hardened === true ? hardened : false;
-	this.banFailsafe = banFailsafe && banFailsafe === true ? banFailsafe : false;
+	this.banFailsafe = banFailsafe === false ? false : true;
+
 	this.dump = new Uint8Array(256);
 	this.mode = '';
 	this.version = '1.1.0';

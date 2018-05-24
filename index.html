@@ -30,7 +30,7 @@
 (function() {
 	var div = document.getElementById("rendering");
 	var hdl = new Jen(false);
-	
+
 	function write(d) {
 		console.log(d, hdl.stats());
 		div.innerHTML = div.innerHTML+"<br/>"+d;
@@ -38,9 +38,9 @@
 	function writeT(d, l) {
 		write("<h"+l+">"+d+"</h"+l+">");
 	}
-	
+
 	writeT("Selected engine: "+hdl.engine(), 1);
-	
+
 	writeT("10 Passwords from 10 to 30 w/o hardening", 2);
 	for(var a=0; a<10; a++)
 		write(hdl.password(10, 30));
@@ -66,7 +66,7 @@
 	writeT("One big long password", 2);
 	hdl.hardening(true);
 	write(hdl.password(128, 512));
-	
+
 	writeT("10 Random 4 bytes", 2);
 	for(var a=0; a<10; a++)
 		write(hdl.randomBytes(4));

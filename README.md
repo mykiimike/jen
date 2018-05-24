@@ -14,7 +14,7 @@ Jen supports 4 engines to generate random bytes :
 * Microsoft Crypto API https://msdn.microsoft.com/en-us/library/windows/desktop/aa380256(v=vs.85).aspx
 * Failsafe
 
-Failsafe uses Math.random() which is not safe because the random number generator doesn't use a 
+Failsafe uses Math.random() which is not safe because the random number generator doesn't use a
 cryptographic approach.   
 
 * You can see a demo at http://mykiimike.github.io/jen/
@@ -22,8 +22,8 @@ cryptographic approach.
 
 ## Hardened passwords
 Jen has a hardened passwords generator activated by default which adds specials chars into the password.
-For those who have SQL injection in the password field they must set to **false** the **hardened** 
-argument at the constructor. 
+For those who want to use Jen for others things they must set to **false** the **hardened** 
+argument at the constructor.
 
 ## Install
 
@@ -114,17 +114,17 @@ for(var a=0; a<10; a++)
 
 ### Jen.hardening(bool)
 Set on/off hardening string generator
- 
+
 * bool: boolean to activate hardened password generator (default true)
-  
-### Jen.engine() 
+
+### Jen.engine()
 Returns the current engine in a String
 ```js
 console.log("Engine: "+hdl.engine());
 ```
 
-### Jen.stats() 
-Get password generation statistics 
+### Jen.stats()
+Get password generation statistics
 ```js
 console.log("Last pass stats: "+hdl.stats());
 ```
@@ -135,4 +135,3 @@ This function fill the random buffer line. You don't need to use it.
 
 [gt-issues]: https://img.shields.io/github/issues/mykiimike/jen.svg
 [gt-licence]: https://img.shields.io/badge/license-GPLv3-blue.svg
-

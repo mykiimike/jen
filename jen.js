@@ -42,9 +42,9 @@ JenFailsafe.getRandomValues = function(buffer) {
 
 function Jen(hardened, banFailsafe) {
 	if(!(this instanceof Jen))
-		return new Jen(hardened);
-	this.hardened = hardened && hardened == true ? hardened : false;
-	this.banFailsafe = banFailsafe && banFailsafe == true ? banFailsafe : false;
+		return new Jen(hardened, banFailsafe);
+	this.hardened = hardened && hardened === true ? hardened : false;
+	this.banFailsafe = banFailsafe && banFailsafe === true ? banFailsafe : false;
 	this.dump = new Uint8Array(256);
 	this.mode = '';
 	this.version = '1.1.0';
@@ -201,9 +201,18 @@ Jen.prototype.password = function(min, max, regex) {
 			else if(this.hardened == true && (
 					array[a] == 0x21 ||
 					array[a] == 0x23 ||
+					array[a] == 0x24 ||
 					array[a] == 0x25 ||
+					array[a] == 0x26 ||
 					(array[a] == 0x28 && array[a] <= 0x2f) ||
-					(array[a] == 0x3a && array[a] <= 0x40)
+					(array[a] == 0x3a && array[a] <= 0x40) ||
+					array[a] == 0x5b ||
+					array[a] == 0x5d ||
+					array[a] == 0x5f ||
+					(array[a] >= 0x61 && array[a] <= 0x7a) ||
+					array[a] == 0x7b ||
+					array[a] == 0x7d ||
+					array[a] == 0x7e
 				)) {
 				if(regex) {
 					if(regex.test(String.fromCharCode(array[a]))) {

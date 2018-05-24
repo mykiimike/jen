@@ -137,6 +137,10 @@ console.log("Last pass stats: "+hdl.stats());
 ### Jen.fill()
 This function fill the random buffer line. You don't need to use it.
 
+## Contact
+
+* Michael Vergoz
+* [@mykiimike](https://twitter.com/mykiimike) / [Github](https://github.com/mykiimike)
 
 [gt-issues]: https://img.shields.io/github/issues/mykiimike/jen.svg
 [gt-licence]: https://img.shields.io/badge/license-GPLv3-blue.svg
